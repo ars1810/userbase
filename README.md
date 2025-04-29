@@ -1,6 +1,10 @@
 # UserBase - User Management App
 
-🚀 Authentication and profile management app built with **Golang**, **React**, **PostgreSQL**, and **JWT**.
+Built with **Golang**, **React**, **PostgreSQL**, and **JWT**.
+
+## 🚀 Live Demo
+
+- ["Link"](https://userbase-w1s4.vercel.app/)
 
 ## ✨ Features
 
@@ -22,6 +26,3 @@
 - Authentication: JWT + bcrypt
 - Hosting: Vercel (frontend) & Render (backend)
 
-## 🚀 Live Demo
-
-- ["Link"](https://userbase-w1s4.vercel.app/)
