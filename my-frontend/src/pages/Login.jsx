@@ -1,42 +1,41 @@
 // src/pages/Login.jsx
 import { useState } from 'react'
-import { TextField, Button, Container, Typography } from '@mui/material'
+import { TextField, Button, Container, Typography, Alert } from '@mui/material'
+import API from '../api/api'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import API from '../api/api'
 
 export default function Login() {
   const [form, setForm] = useState({ email: '', password: '' })
-  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
   const navigate = useNavigate()
 
-  const handleChange = (e) =>
-    setForm({ ...form, [e.target.name]: e.target.value })
+  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setLoading(true)
     try {
       const res = await API.post('/login', form)
       localStorage.setItem('token', res.data.token)
       toast.success('Login sukses!')
+      navigate('/profile')
       navigate('/dashboard')
+
     } catch (err) {
-      toast.error(err?.response?.data?.error || 'Login gagal!')
-    } finally {
-      setLoading(false)
+      toast.error('Login gagal!')
     }
   }
 
   return (
-    <Container maxWidth="xs" sx={{ py: 5 }}>
-      <Typography variant="h4" align="center" gutterBottom>
+    <Container>
+      <Typography variant="h4" component="h1" align="center" gutterBottom>
         Login
       </Typography>
+      {error && <Alert severity="error">{error}</Alert>}
       <form onSubmit={handleSubmit}>
         <TextField
-          name="email"
           label="Email"
+          name="email"
           type="email"
           value={form.email}
           onChange={handleChange}
@@ -45,8 +44,8 @@ export default function Login() {
           margin="normal"
         />
         <TextField
-          name="password"
           label="Password"
+          name="password"
           type="password"
           value={form.password}
           onChange={handleChange}
@@ -54,14 +53,8 @@ export default function Login() {
           required
           margin="normal"
         />
-        <Button
-          type="submit"
-          variant="contained"
-          fullWidth
-          disabled={loading}
-          sx={{ mt: 3 }}
-        >
-          {loading ? 'Logging in...' : 'Login'}
+        <Button type="submit" variant="contained" color="primary" fullWidth sx={{ mt: 2 }}>
+          Login
         </Button>
       </form>
     </Container>
