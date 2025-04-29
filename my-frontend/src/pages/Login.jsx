@@ -1,12 +1,13 @@
 // src/pages/Login.jsx
 import { useState } from 'react'
 import { TextField, Button, Container, Typography } from '@mui/material'
-import API from '../api/api'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import API from '../api/api'
 
 export default function Login() {
   const [form, setForm] = useState({ email: '', password: '' })
+  const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
 
   const handleChange = (e) =>
@@ -14,18 +15,21 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setLoading(true)
     try {
       const res = await API.post('/login', form)
       localStorage.setItem('token', res.data.token)
       toast.success('Login sukses!')
-      navigate('/dashboard')    
+      navigate('/dashboard')
     } catch (err) {
-      toast.error('Login gagal!')
+      toast.error(err?.response?.data?.error || 'Login gagal!')
+    } finally {
+      setLoading(false)
     }
   }
 
   return (
-    <Container maxWidth="xs" sx={{ py: 4 }}>
+    <Container maxWidth="xs" sx={{ py: 5 }}>
       <Typography variant="h4" align="center" gutterBottom>
         Login
       </Typography>
@@ -54,9 +58,10 @@ export default function Login() {
           type="submit"
           variant="contained"
           fullWidth
+          disabled={loading}
           sx={{ mt: 3 }}
         >
-          Login
+          {loading ? 'Logging in...' : 'Login'}
         </Button>
       </form>
     </Container>
