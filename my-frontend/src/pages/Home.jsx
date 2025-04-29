@@ -1,21 +1,35 @@
 // src/pages/Home.jsx
-import { Container, Typography, Button } from '@mui/material'
-import { Link } from 'react-router-dom'
+import { Button, Container, Typography, Box } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 
 export default function Home() {
+  const navigate = useNavigate()
+
   return (
-    <Container>
-      <Typography variant="h3" align="center" gutterBottom>
-        Userbase
+    <Container sx={{ mt: 5, textAlign: 'center' }}>
+      <Typography variant="h3" gutterBottom>
+        Welcome to UserBase
       </Typography>
-      <div style={{ textAlign: 'center' }}>
-        <Button component={Link} to="/register" variant="contained" sx={{ mr: 2 }}>
-          Register
-        </Button>
-        <Button component={Link} to="/login" variant="outlined">
+      <Typography variant="h6" paragraph>
+        A simple and secure platform to manage your data.
+      </Typography>
+      <Box sx={{ mt: 3 }}>
+        <Button
+          variant="contained"
+          color="primary"
+          sx={{ mr: 2 }}
+          onClick={() => navigate('/login')}
+        >
           Login
         </Button>
-      </div>
+        <Button
+          variant="outlined"
+          color="secondary"
+          onClick={() => navigate('/register')}
+        >
+          Register
+        </Button>
+      </Box>
     </Container>
   )
 }
