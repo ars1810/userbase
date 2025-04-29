@@ -46,6 +46,17 @@ func main() {
 	r.GET("/api/me", Me)
 	r.PUT("/api/update-profile", UpdateProfile)
 	r.POST("/api/upload-photo", UploadPhoto)
+	r.Use(func(c *gin.Context) {
+    c.Writer.Header().Set("Access-Control-Allow-Origin", "*")  // Allow all origins (frontend kamu)
+    c.Writer.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+    c.Writer.Header().Set("Access-Control-Allow-Headers", "Origin, Content-Type, Authorization")
+    if c.Request.Method == "OPTIONS" {
+        c.AbortWithStatus(http.StatusNoContent)
+        return
+    }
+    c.Next()
+})
+
 
 
 
