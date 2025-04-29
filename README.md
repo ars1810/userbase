@@ -25,4 +25,3 @@ Built with **Golang**, **React**, **PostgreSQL**, and **JWT**.
 - Database: PostgreSQL
 - Authentication: JWT + bcrypt
 - Hosting: Vercel (frontend) & Render (backend)
-
