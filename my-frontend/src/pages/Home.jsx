@@ -9,7 +9,7 @@ export default function Home() {
         Welcome to UserBase
       </Typography>
       <Typography variant="h6" color="text.secondary" gutterBottom>
-        User Management System
+        User authentication system 
       </Typography>
       <Box sx={{ mt: 4, display: 'flex', justifyContent: 'center', gap: 2 }}>
         <Button component={Link} to="/register" variant="contained">
