@@ -1,6 +1,6 @@
-# UserBase - Full Stack User Management App
+# UserBase - User Management App
 
-🚀 A full-stack authentication and profile management app built with **Golang**, **React**, **PostgreSQL**, and **JWT** authentication.
+🚀 Authentication and profile management app built with **Golang**, **React**, **PostgreSQL**, and **JWT**.
 
 ## ✨ Features
 
@@ -24,14 +24,4 @@
 
 ## 🚀 Live Demo
 
-- Frontend:["Link"](https://userbase-ars1810s-projects.vercel.app/)
-- Backend: ["Link](https://userbase-2.onrender.com)
-
-## 🛠️ Installation
-
-### Backend Setup
-
-```bash
-cd expense-tracker
-go mod tidy
-go run ./cmd/main.go
+- ["Link"](https://userbase-w1s4.vercel.app/)
