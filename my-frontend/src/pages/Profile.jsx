@@ -11,25 +11,42 @@ export default function Profile() {
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
   const fileInput = useRef(null)
-
+  const [user, setUser] = useState(null)
+  
   useEffect(() => {
     const token = localStorage.getItem('token')
-    if (!token) {
-      navigate('/login')
-    } else {
-      API.get('/me', {
-        headers: { Authorization: `Bearer ${token}` }
-      })
-        .then(res => {
-          setUser(res.data)
-          setForm({ name: res.data.name, email: res.data.email })
-        })
-        .catch(() => {
-          localStorage.removeItem('token')
-          navigate('/login')
-        })
-    }
+    if (!token) return navigate('/login')
+    API.get('/me', { headers: { Authorization: `Bearer ${token}` } })
+      .then(res => setUser(res.data))
+      .catch(() => navigate('/login'))
   }, [navigate])
+
+  if (!user) return <Typography>Loading...</Typography>
+
+  return (
+    <Container sx={{ mt: 5 }}>
+      <Card sx={{ maxWidth: 400, mx: 'auto', textAlign: 'center', boxShadow: 3 }}>
+        <Box sx={{ display: 'flex', justifyContent: 'center', mt: -6 }}>
+          <Avatar sx={{ width: 80, height: 80 }}>
+            {user.name[0]}
+          </Avatar>
+        </Box>
+        <CardContent>
+          <Typography variant="h5">{user.name}</Typography>
+          <Typography color="text.secondary">{user.email}</Typography>
+        </CardContent>
+        <CardActions sx={{ justifyContent: 'center' }}>
+          <Button color="error" onClick={() => {
+            localStorage.removeItem('token')
+            navigate('/login')
+          }}>
+            Logout
+          </Button>
+        </CardActions>
+      </Card>
+    </Container>
+  )
+}
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
 
