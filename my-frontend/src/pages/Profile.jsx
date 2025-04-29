@@ -8,6 +8,7 @@ import API from '../api/api'
 
 export default function Profile() {
   const navigate = useNavigate()
+  const [user, setUser] = useState(null)
   const [form, setForm] = useState({ name: '', email: '' })
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
