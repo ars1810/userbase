@@ -12,7 +12,7 @@ function App() {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            My App
+            Userbase
           </Typography>
           <Button color="inherit" component={Link} to="/register">Register</Button>
           <Button color="inherit" component={Link} to="/login">Login</Button>
