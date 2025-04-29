@@ -1,24 +1,21 @@
 // src/pages/Home.jsx
-import { Container, Typography, Button, Box } from '@mui/material'
+import { Container, Typography, Button } from '@mui/material'
 import { Link } from 'react-router-dom'
 
 export default function Home() {
   return (
-    <Container sx={{ textAlign: 'center', mt: 8 }}>
-      <Typography variant="h2" gutterBottom>
-        Welcome to UserBase
+    <Container>
+      <Typography variant="h3" align="center" gutterBottom>
+        Userbase
       </Typography>
-      <Typography variant="h6" color="text.secondary" gutterBottom>
-        User authentication system 
-      </Typography>
-      <Box sx={{ mt: 4, display: 'flex', justifyContent: 'center', gap: 2 }}>
-        <Button component={Link} to="/register" variant="contained">
-          Get Started
+      <div style={{ textAlign: 'center' }}>
+        <Button component={Link} to="/register" variant="contained" sx={{ mr: 2 }}>
+          Register
         </Button>
         <Button component={Link} to="/login" variant="outlined">
           Login
         </Button>
-      </Box>
+      </div>
     </Container>
   )
 }
