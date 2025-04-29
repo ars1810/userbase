@@ -1,37 +1,35 @@
-
+// src/pages/Register.jsx
 import { useState } from 'react'
-import { TextField, Button, Container, Typography } from '@mui/material'
+import { TextField, Button, Container, Typography, Alert } from '@mui/material'
 import API from '../api/api'
-import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 export default function Register() {
   const [form, setForm] = useState({ name: '', email: '', password: '' })
-  const navigate = useNavigate()
+  const [error, setError] = useState('')
 
-  const handleChange = (e) =>
-    setForm({ ...form, [e.target.name]: e.target.value })
+  const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value })
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault()
     try {
       await API.post('/register', form)
-      toast.success('Register sukses!')
-      navigate('/login')
+      toast.success('Login sukses!')
     } catch (err) {
-      toast.error('Register gagal!')
+      toast.error('Login gagal!')
     }
   }
 
   return (
-    <Container maxWidth="xs" sx={{ py: 4 }}>
-      <Typography variant="h4" align="center" gutterBottom>
+    <Container>
+      <Typography variant="h4" component="h1" align="center" gutterBottom>
         Register
       </Typography>
+      {error && <Alert severity="error">{error}</Alert>}
       <form onSubmit={handleSubmit}>
         <TextField
-          name="name"
           label="Name"
+          name="name"
           value={form.name}
           onChange={handleChange}
           fullWidth
@@ -39,8 +37,8 @@ export default function Register() {
           margin="normal"
         />
         <TextField
-          name="email"
           label="Email"
+          name="email"
           type="email"
           value={form.email}
           onChange={handleChange}
@@ -49,8 +47,8 @@ export default function Register() {
           margin="normal"
         />
         <TextField
-          name="password"
           label="Password"
+          name="password"
           type="password"
           value={form.password}
           onChange={handleChange}
@@ -58,12 +56,7 @@ export default function Register() {
           required
           margin="normal"
         />
-        <Button
-          type="submit"
-          variant="contained"
-          fullWidth
-          sx={{ mt: 3 }}
-        >
+        <Button type="submit" variant="contained" color="primary" fullWidth sx={{ mt: 2 }}>
           Register
         </Button>
       </form>
