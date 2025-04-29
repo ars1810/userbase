@@ -1,14 +1,11 @@
-// src/main.jsx (or index.jsx)
+// src/main.jsx
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
 import { BrowserRouter } from 'react-router-dom'
-
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
-)
+import { ThemeProvider, createTheme, CssBaseline } from '@mui/material'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const theme = createTheme({
   palette: {
@@ -21,9 +18,11 @@ const theme = createTheme({
 })
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <ThemeProvider theme={theme}>
-    <CssBaseline />
-    <ToastContainer position="top-right" />
-    <App />
-  </ThemeProvider>
+  <BrowserRouter>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <ToastContainer position="top-right" />
+      <App />
+    </ThemeProvider>
+  </BrowserRouter>
 )
