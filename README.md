@@ -4,7 +4,7 @@ Built with **Golang**, **React**, **PostgreSQL**, and **JWT**.
 
 ## 🚀 Live Demo
 
-- ["Link"](https://userbase-w1s4.vercel.app/)
+- [Link](https://userbase-w1s4.vercel.app/)
 
 ## ✨ Features
 
