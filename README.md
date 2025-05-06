@@ -5,7 +5,7 @@ Built with **Golang**, **React**, **PostgreSQL**, and **JWT**.
 ## 🚀 Live Demo
 
 - [Demo Practice](https://userbase1810.vercel.app/)
-- [Demo Video]:(https://youtu.be/RLqMP_7rGkE)
+- [Demo Video](https://youtu.be/RLqMP_7rGkE)
 
 ## ✨ Features
 
