@@ -1,0 +1,52 @@
+name: Fullstack CI
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  frontend:
+    name: Build Frontend (React + Vite)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: my-frontend
+
+      - name: Build frontend
+        run: npm run build
+        working-directory: my-frontend
+
+  backend:
+    name: Build & Test Backend (Go)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: 1.21
+
+      - name: Download dependencies
+        run: go mod download
+        working-directory: backend
+
+      - name: Build backend
+        run: go build ./...
+        working-directory: backend
+
+      - name: Run tests
+        run: go test ./...
+        working-directory: backend
